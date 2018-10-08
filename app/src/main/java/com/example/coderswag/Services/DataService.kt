@@ -2,7 +2,6 @@ package com.example.coderswag.Services
 
 import com.example.coderswag.Model.Category
 import com.example.coderswag.Model.Product
-import com.example.coderswag.Model.Product
 
 object DataService {
     val categories = listOf(
