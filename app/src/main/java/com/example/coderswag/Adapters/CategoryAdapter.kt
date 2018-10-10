@@ -16,12 +16,9 @@ import com.example.coderswag.R
 
     // (has error) right click on Caterougy adapter and select implement members, and select all necessary items in that list.
 
-class CategoryAdapter(context: Context, categories: List<Category>) : BaseAdapter(){
+class CategoryAdapter(val context: Context, val categories: List<Category>) : BaseAdapter(){
 
-    val context = context
-    val categories = categories
-
-                        // chane p0, p1, p2 was automatically changed to positoin, converView, and parent. i did not do it.
+    // chane p0, p1, p2 was automatically changed to positoin, converView, and parent. i did not do it.
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val categoryView : View
@@ -30,14 +27,14 @@ class CategoryAdapter(context: Context, categories: List<Category>) : BaseAdapte
         if (convertView == null){
             categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item,null)
             holder = ViewHolder()
-            //holder instead of val is more efficient
+            //Holder instead of val is more efficient
             holder.categoryImage = categoryView.findViewById(R.id.categoryImage)
             holder.categoryName = categoryView.findViewById(R.id.categoryName)
             //println("I exist for the first time")
 //            val categoryImage : ImageView = categoryView.findViewById(R.id.categoryImage)
 //            val categoryName : TextView = categoryView.findViewById(R.id.categoryName)
 
-                // setting a unique value to the categoryView, which is the holder.
+                // setting a unique value to the categoryView, which is the Holder.
             categoryView.tag = holder
         }else{
             holder = convertView.tag as ViewHolder
@@ -54,8 +51,10 @@ class CategoryAdapter(context: Context, categories: List<Category>) : BaseAdapte
         val category = categories[position]
 
         val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
-        /**after adding the else section we need to add holder infront of caterogyImage---
+        /**after adding the else section we need to add Holder infront of caterogyImage---
          ? are added to make it a safe call because they are nullable */
+
+        //this is the binding section equivlant to categoryRecyclerAdapter
         holder.categoryImage?.setImageResource(resourceId)
             //print line not needed
         //println(resourceId)
