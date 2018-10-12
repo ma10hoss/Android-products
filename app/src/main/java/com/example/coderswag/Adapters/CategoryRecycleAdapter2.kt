@@ -9,12 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.coderswag.Model.Category
 import com.example.coderswag.R
-
-class CategoryRecycleAdapter2 (val context:Context,val categories: CategoryRecycleAdapter2):RecyclerView.Adapter<CategoryRecycleAdapter2.Holder> (){
+                                                                                // itemClick: is a LAMBDA expression that recieves a (category) and returnes (unit)nothing
+                                                                                // LAMBDA is a first class citizen, means a function behaves as a type. // Unite is void in kotlin
+class CategoryRecycleAdapter2 (val context: Context, val categories: List<Category>, val itemClick:(Category) -> Unit ):RecyclerView.Adapter<CategoryRecycleAdapter2.Holder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent?.context)
                 .inflate(R.layout.category_list_item, parent, false)
-        return Holder(view)
+        return Holder(view, itemClick)
     }
 
     override fun getItemCount(): Int {
@@ -23,10 +24,10 @@ class CategoryRecycleAdapter2 (val context:Context,val categories: CategoryRecyc
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-    holder?.bindCategory(categories[positoin], context)
+    holder?.bindCategory(categories[position], context)
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class Holder(itemView: View?, val itemClick: (Category) -> Unit) : RecyclerView.ViewHolder(itemView){
 
         val categoryImage = itemView?.findViewById<ImageView>(R.id.categoryImage)
         val categoryName = itemView?.findViewById<TextView>(R.id.categoryName)
@@ -36,8 +37,9 @@ class CategoryRecycleAdapter2 (val context:Context,val categories: CategoryRecyc
                     "drawable", context.packageName)
             categoryImage?.setImageResource(resourceId)
             categoryName?.text = category.title
+            itemView.setOnClickListener { itemClick(category) }
         }
     }
 }
 
-}
+

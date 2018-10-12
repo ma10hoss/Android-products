@@ -1,5 +1,6 @@
 package com.example.coderswag.Controller
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.example.coderswag.Adapters.CategoryRecycleAdapter2
 import com.example.coderswag.Model.Category
 import com.example.coderswag.R
 import com.example.coderswag.Services.DataService
+import com.example.coderswag.Utilities.EXTRA_CATEGORY
 import kotlinx.android.synthetic.main.activity_main.*
 
 /** Created by Arman Hossain 10/8/2018
@@ -35,11 +37,20 @@ class MainActivity : AppCompatActivity() {
 //        categoryListView.adapter = adapter
 
         //this was added later
-        adapter = CategoryRecycleAdapter2( this, DataService.categories)
+        adapter = CategoryRecycleAdapter2(this, DataService.categories){
+             // the stuff that happens when we click on a button
+            category ->
+                // will print out the title whe a button is clicked in categories.
+                //println(category.title)
+            val productIntent = Intent(this, ProductsActivity::class.java)
+            productIntent.putExtra(EXTRA_CATEGORY,category.title)
+            startActivity(productIntent)
+
+        }
         categoryListView.adapter = adapter
 
-        val layoutmanager = LinearLayoutManager(this)
-        categoryListView.layoutManager = layoutmanager
+        val layoutManager = LinearLayoutManager(this)
+        categoryListView.layoutManager = layoutManager
         categoryListView.setHasFixedSize(true)
 
         // click listener for your list view--this will display the message when a button is clicked in the category
