@@ -1,6 +1,7 @@
 package com.example.coderswag.Adapters
 
 import android.content.Context
+import android.support.v7.view.menu.MenuView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,9 @@ import com.example.coderswag.R
                                                                                 // itemClick: is a LAMBDA expression that recieves a (category) and returnes (unit)nothing
                                                                                 // LAMBDA is a first class citizen, means a function behaves as a type. // Unite is void in kotlin
 class CategoryRecycleAdapter2 (val context: Context, val categories: List<Category>, val itemClick:(Category) -> Unit ):RecyclerView.Adapter<CategoryRecycleAdapter2.Holder> (){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.category_list_item, parent, false)
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
+        val view = LayoutInflater.from(p0?.context)
+                .inflate(R.layout.category_list_item, p0, false)
         return Holder(view, itemClick)
     }
 

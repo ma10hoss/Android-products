@@ -14,7 +14,7 @@ import com.example.coderswag.R
  * created by Arman Hossain on 10/8/2018l
  */
 
-    // (has error) right click on Caterougy adapter and select implement members, and select all necessary items in that list.
+    // (has error) right click on Category adapter and select implement members, and select all necessary items in that list.
 
 class CategoryAdapter(val context: Context, val categories: List<Category>) : BaseAdapter(){
 
